@@ -99,7 +99,9 @@ data/
 models/
 └── all-mpnet-base-v2/
     ├── config.json
-    (...)
+    ├── ...
+    └── 1_Pooling/
+        └── config.json
 ```
 
 ## Run Experiments
