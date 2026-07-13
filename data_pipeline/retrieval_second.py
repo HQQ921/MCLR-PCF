@@ -32,13 +32,13 @@ class UnionWeightedRetriever:
             "normalize_ts": False,
 
             # 视角权重（文本匹配）
-            "w_temporal": 0.3,
-            "w_background": 0.4,
-            "w_statistical": 0.3,
+            "w_temporal": 0.5,
+            "w_background": 0.3,
+            "w_statistical": 0.2,
 
             # 综合得分权重
-            "alpha": 0.4,  # 文本得分权重
-            "beta": 0.6,  # 序列相似度权重
+            "alpha": 0.2,  # 文本得分权重
+            "beta": 0.8,  # 序列相似度权重
 
             # 背景视角配置
             "background_top_n": 50,  # 背景视角取Top-N
