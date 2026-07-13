@@ -1,0 +1,22 @@
+#!/bin/bash
+python3 run_forecast_rag_perspective.py \
+  --data_path data/processed/Energy/energy_generated_all.csv \
+  --pred_len 12 \
+  --per_sample_neighbors_path ./data/processed/Energy/pattern_library/per_sample_neighbors.pkl \
+  --llm_local_path ./models/all-mpnet-base-v2 \
+  --seq_len 36 \
+  --label_len 18 \
+  --retrieval_top_k 2 \
+  --use_similarity_prior \
+  --similarity_alpha 0.3 \
+  --use_trend_norm \
+  --view_residual \
+  --residual_alpha_stat 0.2 \
+  --residual_alpha_back 0.2 \
+  --use_delta_pred \
+  --learning_rate 3e-5 \
+  --use_neighbor_quality_gate \
+  --neighbor_quality_alpha 0.5 \
+  --rag_lambda 0.2 \
+  --pretrained_encoder False \
+  --checkpoints ./checkpoints/forecast_rag/energy_pred12

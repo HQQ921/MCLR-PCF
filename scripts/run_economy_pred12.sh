@@ -1,0 +1,21 @@
+#!/bin/bash
+python3 run_forecast_rag_perspective.py \
+  --data_path data/processed/Economy/economy_generated_all_pred12.csv \
+  --pred_len 12 \
+  --per_sample_neighbors_path ./data/processed/Economy/pattern_library/per_sample_neighbors.csv \
+  --llm_local_path ./models/all-mpnet-base-v2 \
+  --retrieval_top_k 4 \
+  --use_similarity_prior \
+  --similarity_alpha 0.0 \
+  --use_trend_norm \
+  --view_residual \
+  --residual_alpha_back 0.1 \
+  --residual_alpha_stat 0.0 \
+  --use_delta_pred \
+  --gate_init_bias -0.5 \
+  --learning_rate 3e-5 \
+  --use_neighbor_quality_gate \
+  --neighbor_quality_alpha 0.8 \
+  --rag_lambda 0.4 \
+  --pretrained_encoder False \
+  --checkpoints ./checkpoints/forecast_rag/economy_pred12

@@ -1,0 +1,58 @@
+﻿{
+  "datasets": {
+    "energy": {
+      "1": "Policy and Regulatory Reshaping",
+      "2": "International Conflict and Supply Disruption",
+      "3": "Corporate Decisions and Capital Operations",
+      "4": "Consumer Response and Lifestyle Adjustment",
+      "5": "Technology Innovation and Energy Transition"
+    },
+    "traffic": {
+      "1": "Holiday and Special Dates",
+      "2": "Tourism and Visitor Inflows",
+      "3": "Severe Weather and Natural Hazards",
+      "4": "Traffic Accidents and Road Incidents",
+      "5": "Large Public Events and Gatherings",
+      "6": "Epidemic and Public Health Events"
+    },
+    "health": {
+      "1": "Winter Seasonality and Climate Suitability",
+      "2": "Presenteeism Culture and Absence Cost Pressure",
+      "3": "Fragmented Public Health Surveillance and Response",
+      "4": "Immunological Vulnerability of High-Risk Groups",
+      "5": "Healthcare Burden from Multi-Disease Co-Pressure"
+    },
+    "climate": {
+      "1": "Persistent Warming and Heat Extremes",
+      "2": "Precipitation Patterns and Extremes",
+      "3": "Drought Evolution and Water Stress",
+      "4": "Large-Scale Climate Systems and Geographic Modulation"
+    },
+    "socialgood": {
+      "1": "Economic Shocks and Extreme Events",
+      "2": "Systemic Employment Barriers",
+      "3": "Specific Vulnerable Populations",
+      "4": "Policy, Welfare, and Social Support Systems"
+    },
+    "environment": {
+      "1": "Anthropogenic Pollution Emissions",
+      "2": "Energy and Resource Extraction",
+      "3": "Wildfires and Biomass Burning",
+      "4": "Industrial Accidents and Technological Hazards"
+    },
+    "agriculture": {
+      "1": "Vertical Integration and Contract Farming",
+      "2": "Consumer Preference Shift in Product Form and Weight",
+      "3": "Cross-Category Substitution after Food Safety Shocks",
+      "4": "Consumption Upgrade Driven by Health and Sustainability",
+      "5": "Global Cost Advantage and Export-Oriented Expansion"
+    },
+    "economy": {
+      "1": "Labor Market",
+      "2": "Government Policy",
+      "3": "Crisis and Long-Term Risk",
+      "4": "Industrial Upgrading and Transformation",
+      "5": "International Environment and Global Linkage"
+    }
+  }
+}

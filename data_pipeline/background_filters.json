@@ -1,0 +1,316 @@
+﻿{
+  "version": "1.0",
+  "defaults": {
+    "normalize": {
+      "lower": true,
+      "strip": true,
+      "collapse_spaces": true
+    },
+    "invalid_values": [
+      "",
+      "na",
+      "n/a",
+      "none",
+      "no relevant information"
+    ],
+    "logic": "any",
+    "min_matched_rules": 1,
+    "on_no_match": "drop"
+  },
+  "datasets": {
+    "health": {
+      "enabled": true,
+      "rules": [
+        {
+          "id": "1",
+          "name": "Winter seasonality and climate suitability",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(december|january|february|march|winter|cold|dry air|indoor gathering|seasonal flu|flu season)\\b"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Presenteeism culture and absence cost pressure",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(work with.*fever|work while sick|high fevers.*work|unable to take leave|miss work|absenteeism due to illness|economic pressure.*stay home)\\b"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Fragmented public health surveillance and response",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(state.*position|positions of states|who.*index|fragmented reporting|lack of coordination|data silo|surveillance gap|delayed alert)\\b"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Immunological vulnerability of high-risk groups",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(h3n2|elderly|older adults|seniors|high-risk group|low vaccine coverage|poor immune response|vulnerable population|age-related severity)\\b"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Healthcare burden from multi-disease pressure",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(other infections|co-infection|secondary infection|healthcare burden|overwhelmed system|multiple diseases|competing illnesses|resource strain)\\b"
+          ]
+        }
+      ]
+    },
+    "climate": {
+      "enabled": true,
+      "invalid_values": [
+        "",
+        "na",
+        "n/a",
+        "none",
+        "no relevant information",
+        "unrelated to climate"
+      ],
+      "rules": [
+        {
+          "id": "1",
+          "name": "Persistent warming and heat extremes",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(warming|temperature rise|rising temperature|increasing temperature|global warming|climate warming|heat wave|record high|warmest on record|above average temperature|long-term warming trend|hotter)\\b"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Precipitation patterns and extremes",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(precipitation|rainfall|rain|snow|snowfall|drought-breaking rain|extreme precipitation|heavy rainfall|intense rain|downpour|precipitation pattern|seasonal rainfall|regional precipitation|below average precipitation|above average precipitation|flood|deluge)\\b"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Drought evolution and water stress",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(drought|dry spell|arid|water shortage|water stress|low soil moisture|desiccation|dry conditions|exceptional drought|moderate drought|severe drought|extreme drought|palmer drought|vegdri|water deficit)\\b"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Large-scale systems and geography",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(el nino|el niño|la nina|la niña|enso|atlantic multidecadal oscillation|amo|north atlantic subtropical high|nash|atmospheric circulation|jet stream|climate oscillation|teleconnection|geography|topography|continental divide|mountain range|coastal region|inland area|elevation|terrain|watershed|regional climate|spatial pattern)\\b"
+          ]
+        }
+      ]
+    },
+    "environment": {
+      "enabled": true,
+      "invalid_values": [
+        "",
+        "na",
+        "n/a",
+        "none",
+        "no relevant information",
+        "unrelated to environment"
+      ],
+      "rules": [
+        {
+          "id": "1",
+          "name": "Anthropogenic pollution emissions",
+          "type": "regex_any",
+          "patterns": [
+            "(空气污染|雾霾|空气质量预警|放射性烟羽|工业排放|汽车尾气)",
+            "\\b(air pollution|haze|air quality advisory|radioactive plume|xenon[- ]?133|industrial emissions|vehicle exhaust|particulate matter|smog|toxic release)\\b"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Energy and resource extraction",
+          "type": "regex_any",
+          "patterns": [
+            "(能源开发|石油钻探|采矿|水力压裂|森林砍伐|资源开采)",
+            "\\b(energy development|oil drilling|mining|fracking|deforestation|alaska north slope|natural resource exploitation|fossil fuel extraction)\\b"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Wildfires and biomass burning",
+          "type": "regex_any",
+          "patterns": [
+            "(野火烟雾|森林火灾|计划烧除)",
+            "\\b(wildfire smoke|canada wildfire|forest fire|prescribed burn|peat fire|smoke plume|biomass burning|vegetation fire)\\b"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Industrial accidents and technological hazards",
+          "type": "regex_any",
+          "patterns": [
+            "(三里岛|核事故|化学品泄漏|工业灾难)",
+            "\\b(three mile island|nuclear accident|chemical spill|industrial disaster|meltdown|radiation leak|toxic waste)\\b"
+          ]
+        }
+      ]
+    },
+    "socialgood": {
+      "enabled": true,
+      "invalid_values": [
+        "",
+        "na",
+        "n/a",
+        "none",
+        "no relevant information",
+        "unrelated to socialgood"
+      ],
+      "rules": [
+        {
+          "id": "1",
+          "name": "Economic shocks and extreme events",
+          "type": "regex_any",
+          "patterns": [
+            "(经济衰退|经济危机|金融危机|大萧条|疫情|新冠疫情|自然灾害|地震|洪水|战争|产业崩塌|大规模裁员|企业倒闭|需求萎缩|周期性失业|GDP下降|经济下行|停工停产)",
+            "\\b(recession|economic crisis|financial crisis|great depression|pandemic|natural disaster|war|industry collapse|mass layoff|business closure|cyclical unemployment)\\b"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Systemic employment barriers",
+          "type": "regex_any",
+          "patterns": [
+            "(歧视|种族歧视|性别歧视|教育不平等|地域差异|城乡差距|社会资本|居住隔离|招聘偏见|玻璃天花板|结构性失业|机会不均|少数族裔|农村女性|学历门槛)",
+            "\\b(discrimination|racial bias|gender bias|educational inequality|geographic disparity|social capital|residential segregation|hiring bias|glass ceiling|structural unemployment)\\b"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Specific vulnerable populations",
+          "type": "regex_any",
+          "patterns": [
+            "(残疾人|精神疾病|精神障碍|刑满释放人员|无家可归者|长期失业者|福利依赖|重度残疾|边缘群体|无法就业|庇护工场|智力障碍|自闭症|吸毒史|前科人员)",
+            "\\b(disabled|mental illness|ex[- ]offenders|homeless|long[- ]term unemployed|welfare dependency|severely disabled|marginalized groups|supported employment)\\b"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Policy, welfare, and social support systems",
+          "type": "regex_any",
+          "patterns": [
+            "(失业救济|失业保险|最低工资|职业培训|就业补贴|残疾人配额|社会保障|公共就业服务|福利制度|政策干预|再就业计划|就业援助|政府帮扶|社保体系)",
+            "\\b(unemployment benefits|unemployment insurance|minimum wage|job training|employment subsidy|disability quota|social security|public employment service|welfare system|active labor market policy)\\b"
+          ]
+        }
+      ]
+    },
+    "agriculture": {
+      "enabled": true,
+      "invalid_values": [
+        "",
+        "na",
+        "n/a",
+        "none",
+        "no relevant information",
+        "unrelated to broiler market"
+      ],
+      "rules": [
+        {
+          "id": "1",
+          "name": "Vertical integration and contract farming",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(contract.*farmer|farmer.*contract|vertically integrated|grow-out contract|poultry company.*control|integrator|processing firm.*supply)\\b"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Consumer preference shift in product form and weight",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(chicken breast|chicken leg|wing|thigh|cut-up parts|portion control|body weight|carcass weight|whole bird|consumer demand.*parts|shift from whole chicken)\\b"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Cross-category substitution after food safety shocks",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(scandal|milk scandal|contamination|recall|food safety concern|switch from.*dairy|beef.*outbreak|public concern.*other meat|substitute.*chicken)\\b"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Consumption upgrade driven by health and sustainability",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(organic|antibiotic.*free|no antibiotics|humane|free-range|sustainable|animal welfare|health-conscious|eco-friendly|premium chicken|ethical consumption)\\b"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Global cost advantage and export-oriented expansion",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(export|global market|world's largest|lowest cost|corn feed|soybean meal|feed cost|competitive internationally|usa.*poultry producer|domestic and export)\\b"
+          ]
+        }
+      ]
+    },
+    "economy": {
+      "enabled": true,
+      "invalid_values": [
+        "",
+        "na",
+        "n/a",
+        "none",
+        "no relevant information",
+        "unrelated to economy"
+      ],
+      "rules": [
+        {
+          "id": "1",
+          "name": "Labor market and employment dynamics",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(unemployment|employment|wage|salary|labor force|labour force|labor participation|hiring|recruitment|staff shortage|small business.*hiring|part[- ]?time|full[- ]?time|demographic.*labor|disabled workers|migrant labor)\\b"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Government policy and macroeconomic intervention",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(government policy|federal reserve|fed|interest rate|rate hike|rate cut|tax cut|infrastructure spending|fiscal budget|public spending|subsidy|regulation|legislation|white house|congress|monetary policy|fiscal policy)\\b"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Crisis shocks and structural long-term risks",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(crisis|opioid|pandemic|climate risk|natural disaster|healthcare cost|inequality|debt burden|inflation pressure|water scarcity|pollution|food allergy|antibiotic resistance|social risk|systemic risk)\\b"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Industrial upgrading and economic transformation",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(service economy|technology innovation|digital economy|digital transformation|manufacturing upgrade|automation|artificial intelligence|\\bai\\b|biotechnology|clean tech|high value[- ]added|knowledge economy|industrial transformation)\\b"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "International environment and global linkages",
+          "type": "regex_any",
+          "patterns": [
+            "\\b(trade|usmca|export|import|foreign investment|globalization|geopolitical|mexico|china|currency manipulation|global economy|supply chain|international cooperation|cross[- ]?border)\\b"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+
+# Caches
+.llm_cache/
+.context_cache/
+
+# Model weights (download via download_bert.py)
+models/all-mpnet-base-v2/
+models/all-MiniLM-L6-v2/
+models/bert-base-uncased/
+
+# Checkpoints / training outputs
+checkpoints/
+
+# Dataset files (download separately)
+data/
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+.claude/
+.history/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated plots / images
+*.png
+*.jpg
+*.jpeg
