@@ -99,15 +99,8 @@ data/
 models/
 └── all-mpnet-base-v2/
     ├── config.json
-    ├── model.safetensors
-    ├── tokenizer.json
-    ├── tokenizer_config.json
-    ├── special_tokens_map.json
-    ├── vocab.txt
-    ├── modules.json
-    ├── sentence_bert_config.json
-    └── 1_Pooling/
-        └── config.json
+    (...)
+```
 
 ## Run Experiments
 
