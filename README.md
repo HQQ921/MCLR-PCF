@@ -20,8 +20,8 @@ Large files (datasets and pre-trained model) are not included in this repository
 
 | Content | Link |
 |---------|------|
-| Dataset | https://pan.quark.cn/s/529e2bf49c85 |
-| Pre-trained model (`all-mpnet-base-v2`) | https://pan.quark.cn/s/afbf039a08f5 |
+| Dataset | https://pan.quark.cn/s/1f6c6cc1ba64 |
+| Pre-trained model (`all-mpnet-base-v2`) | https://pan.quark.cn/s/d51246d8730f |
 
 Expected structure:
 
