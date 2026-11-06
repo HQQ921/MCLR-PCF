@@ -10,7 +10,6 @@ python run_forecast_rag_perspective.py ^
 import argparse
 import os
 import random
-import time
 import torch
 from exp.exp_forecast_rag_perspective import Exp_Forecast_RAG_Perspective
 from data_provider.data_loader import data_provider
@@ -80,7 +79,7 @@ def get_args():
                         help="Weight for unmatched perspectives when soft mask is enabled")
     parser.add_argument("--use_residual_rag", action="store_true",
                         help="Use base_pred + rag_lambda * rag_pred instead of fused prediction")
-    parser.add_argument("--rag_lambda", type=float, default=0.5,
+    parser.add_argument("--rag_lambda", type=float, default=0.3,
                         help="Residual weight for rag_pred when use_residual_rag is on")
     parser.add_argument("--gate_init_bias", type=float, default=-1.0,
                         help="Init bias for gate sigmoids; larger -> more open gates")
@@ -103,7 +102,7 @@ def get_args():
                         help="Use time view prediction as main output and add background/statistical residuals")
     parser.add_argument("--residual_alpha_time", type=float, default=1.0,
                         help="Residual weight for time view when view_residual is enabled")
-    parser.add_argument("--residual_alpha_back", type=float, default=0.2,
+    parser.add_argument("--residual_alpha_back", type=float, default=1.0,
                         help="Residual weight for background view when view_residual is enabled")
     parser.add_argument("--residual_alpha_stat", type=float, default=1.0,
                         help="Residual weight for statistical view when view_residual is enabled")
@@ -125,7 +124,7 @@ def get_args():
                         help="Weight for similarity prior added to attention logits")
     parser.add_argument("--use_neighbor_quality_gate", action="store_true",
                         help="Learn per-neighbor quality weights from sequence_similarity")
-    parser.add_argument("--neighbor_quality_alpha", type=float, default=0.3,
+    parser.add_argument("--neighbor_quality_alpha", type=float, default=1.0,
                         help="Exponent for learned neighbor quality weight (>=0)")
     parser.add_argument("--neighbor_quality_hidden", type=int, default=8,
                         help="Hidden size of neighbor quality MLP")
@@ -191,7 +190,6 @@ def get_args():
 
 
 def main():
-    t_start = time.time()
     args = get_args()
     os.makedirs(args.checkpoints, exist_ok=True)
 
@@ -201,16 +199,13 @@ def main():
     print("=" * 80)
 
     print("\n1. Loading data...")
-    t_data_start = time.time()
     train_data, train_loader = data_provider(args, flag="train")
     val_data, val_loader = data_provider(args, flag="val")
     test_data, test_loader = data_provider(args, flag="test")
-    t_data_end = time.time()
 
     print(f"  Train samples: {len(train_data)}")
     print(f"  Val samples: {len(val_data)}")
     print(f"  Test samples: {len(test_data)}")
-    print(f"  Data loading time: {t_data_end - t_data_start:.1f}s")
 
     print("\n2. Building model...")
     exp = Exp_Forecast_RAG_Perspective(args)
@@ -226,13 +221,11 @@ def main():
         print("\n3. Training from scratch (no pretrained encoder).")
 
     print("\n4. Training...")
-    t_train_start = time.time()
     best_val_metric = float("inf")
     patience_counter = 0
     best_path = os.path.join(args.checkpoints, "best_model.pth")
 
     for epoch in range(1, args.train_epochs + 1):
-        t_epoch_start = time.time()
         print(f"\n{'='*80}")
         print(f"Epoch {epoch}/{args.train_epochs}")
         print(f"{'='*80}")
@@ -242,11 +235,9 @@ def main():
         val_loss = val_metrics["loss"]
         val_mse = val_metrics["mse"]
         val_mae = val_metrics["mae"]
-        t_epoch_end = time.time()
 
         print(f"Train Loss: {train_loss:.4f}")
         print(f"Val Loss: {val_loss:.4f}, Val MSE: {val_mse:.4f}, Val MAE: {val_mae:.4f}")
-        print(f"Epoch time: {t_epoch_end - t_epoch_start:.1f}s")
 
         if args.select_metric == "mse":
             val_score = val_mse
@@ -276,11 +267,7 @@ def main():
             print(f"\nEarly stopping at epoch {epoch}")
             break
 
-    t_train_end = time.time()
-    print(f"\nTotal training time: {t_train_end - t_train_start:.1f}s")
-
     print("\n5. Testing...")
-    t_test_start = time.time()
     if os.path.exists(best_path):
         best_checkpoint = torch.load(best_path, map_location=args.device)
         exp.ts_encoder.load_state_dict(best_checkpoint["ts_encoder"], strict=False)
@@ -288,17 +275,10 @@ def main():
         exp.prediction_head.load_state_dict(best_checkpoint["prediction_head"], strict=False)
 
     test_metrics = exp.validate(test_loader)
-    t_test_end = time.time()
     print(f"\nTest Results:")
     print(f"  Test Loss: {test_metrics['loss']:.4f}")
     print(f"  Test MSE: {test_metrics['mse']:.4f}")
     print(f"  Test MAE: {test_metrics['mae']:.4f}")
-    print(f"  Testing time: {t_test_end - t_test_start:.1f}s")
-
-    t_end = time.time()
-    print(f"\n{'='*80}")
-    print(f"Total runtime: {t_end - t_start:.1f}s ({(t_end - t_start)/60:.1f}min)")
-    print(f"{'='*80}")
 
     if args.debug_random_neighbor:
         sample_ids = getattr(test_data, "sample_ids", None)
