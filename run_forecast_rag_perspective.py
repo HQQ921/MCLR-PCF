@@ -80,7 +80,7 @@ def get_args():
                         help="Weight for unmatched perspectives when soft mask is enabled")
     parser.add_argument("--use_residual_rag", action="store_true",
                         help="Use base_pred + rag_lambda * rag_pred instead of fused prediction")
-    parser.add_argument("--rag_lambda", type=float, default=0.3,
+    parser.add_argument("--rag_lambda", type=float, default=0.5,
                         help="Residual weight for rag_pred when use_residual_rag is on")
     parser.add_argument("--gate_init_bias", type=float, default=-1.0,
                         help="Init bias for gate sigmoids; larger -> more open gates")
@@ -103,7 +103,7 @@ def get_args():
                         help="Use time view prediction as main output and add background/statistical residuals")
     parser.add_argument("--residual_alpha_time", type=float, default=1.0,
                         help="Residual weight for time view when view_residual is enabled")
-    parser.add_argument("--residual_alpha_back", type=float, default=1.0,
+    parser.add_argument("--residual_alpha_back", type=float, default=0.2,
                         help="Residual weight for background view when view_residual is enabled")
     parser.add_argument("--residual_alpha_stat", type=float, default=1.0,
                         help="Residual weight for statistical view when view_residual is enabled")
@@ -125,7 +125,7 @@ def get_args():
                         help="Weight for similarity prior added to attention logits")
     parser.add_argument("--use_neighbor_quality_gate", action="store_true",
                         help="Learn per-neighbor quality weights from sequence_similarity")
-    parser.add_argument("--neighbor_quality_alpha", type=float, default=1.0,
+    parser.add_argument("--neighbor_quality_alpha", type=float, default=0.3,
                         help="Exponent for learned neighbor quality weight (>=0)")
     parser.add_argument("--neighbor_quality_hidden", type=int, default=8,
                         help="Hidden size of neighbor quality MLP")
